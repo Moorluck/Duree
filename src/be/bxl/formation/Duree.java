@@ -9,6 +9,23 @@ public class Duree {
     private int minutes;
     private int secondes;
 
+    public int getJours() {
+        return jours;
+    }
+
+    public int getHeures() {
+        return heures;
+    }
+
+    public int getMinutes() {
+        return minutes;
+    }
+
+    public int getSecondes() {
+        return secondes;
+    }
+
+
     public Duree(int secondes) {
         if (secondes < 0) {
             throw new IllegalArgumentException();
@@ -42,22 +59,22 @@ public class Duree {
     }
 
     public String getDuree() {
-        return jours + " jours, " + heures + " : " + minutes + " : " + secondes;
+        return jours + " jours, " + heures + " heures, " + minutes + " minutes et " + secondes + " secondes";
     }
 
-    public String getTotalSeconds() {
+    public int getTotalSeconds() {
 
         int totalSecondes = secondes;
         totalSecondes += minutes*60;
         totalSecondes += heures*60*60;
         totalSecondes += jours*24*60*60;
 
-        return "La durée total en seconde est de : " + totalSecondes;
+        return totalSecondes;
     }
 
     public void subDuree(Duree aSoustraire) {
-        int totalSeconds = convertDureeToSeconds(this);
-        int totalSecondsASoustraire = convertDureeToSeconds(aSoustraire);
+        int totalSeconds = this.getTotalSeconds();
+        int totalSecondsASoustraire = aSoustraire.getTotalSeconds();
 
         int results = totalSeconds - totalSecondsASoustraire;
 
@@ -74,8 +91,8 @@ public class Duree {
     }
 
     public void addDuree(Duree aAjouter) {
-        int totalSeconds = convertDureeToSeconds(this);
-        int totalSecondsASoustraire = convertDureeToSeconds(aAjouter);
+        int totalSeconds = this.getTotalSeconds();
+        int totalSecondsASoustraire = aAjouter.getTotalSeconds();
 
         int results = totalSeconds + totalSecondsASoustraire;
 
@@ -85,17 +102,6 @@ public class Duree {
         this.minutes = newDuree.minutes;
         this.heures = newDuree.heures;
         this.jours = newDuree.jours;
-    }
-
-    private int convertDureeToSeconds(Duree duree) {
-
-        int totalSeconds = duree.secondes;
-        totalSeconds += duree.minutes*60;
-        totalSeconds += duree.heures*60*60;
-        totalSeconds += duree.jours*60*60*24;
-
-        return totalSeconds;
-
     }
 
     private Duree convertSecondsToDuree(int secondes) {

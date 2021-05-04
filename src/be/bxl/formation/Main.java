@@ -3,7 +3,7 @@ package be.bxl.formation;
 public class Main {
 
     public static void main(String[] args) {
-        
+
 	    Duree duree = new Duree(1000);
         System.out.println("Durée 1 : " + duree.getDuree());
 
@@ -15,6 +15,8 @@ public class Main {
 
         duree.subDuree(duree2);
         System.out.println("Durée 1 après retrait : " + duree.getDuree());
+
+        System.out.println(duree.getJours());
 
     }
 }
